@@ -1,1 +1,1 @@
-FROM traefik:1.7.20
+FROM traefik:2.1.4
