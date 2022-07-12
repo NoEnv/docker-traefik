@@ -13,6 +13,7 @@ on:
 env:
   IMAGE_OWNER: noenv
   IMAGE_NAME: traefik
+  STORAGE_DRIVER: overlay
 
 jobs:
   build:
@@ -66,8 +67,8 @@ jobs:
 
       - name: Import images
         run: |
-          podman --storage-driver overlay load -i ./image-amd64/image.tar
-          podman --storage-driver overlay load -i ./image-arm64v8/image.tar
+          podman load -i ./image-amd64/image.tar
+          podman load -i ./image-arm64v8/image.tar
 
       - name: Create multi-arch manifest
         run: |
