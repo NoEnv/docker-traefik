@@ -61,13 +61,13 @@ jobs:
       - name: Download artifacts
         uses: actions/download-artifact@v2
 
+      - name: Setup podman and buildah
+        uses: zyclonite/setup-podman@v1
+
       - name: Import images
         run: |
           podman load -i ./image-amd64/image.tar
           podman load -i ./image-arm64v8/image.tar
-
-      - name: Setup podman and buildah
-        uses: zyclonite/setup-podman@v1
 
       - name: Create multi-arch manifest
         run: |
