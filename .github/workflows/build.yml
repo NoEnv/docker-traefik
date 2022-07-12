@@ -34,9 +34,6 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y qemu-user-static
 
-      - name: Setup podman and buildah
-        uses: zyclonite/setup-podman@v1
-
       - name: Build Image
         run: buildah bud --platform ${{ matrix.platform.name }} -f ./Dockerfile -t ${{ env.IMAGE_NAME }}:${{ matrix.platform.tag }} .
 
@@ -69,8 +66,8 @@ jobs:
 
       - name: Import images
         run: |
-          podman load -i ./image-amd64/image.tar
-          podman load -i ./image-arm64v8/image.tar
+          podman --storage-driver vfs load -i ./image-amd64/image.tar
+          podman --storage-driver vfs load -i ./image-arm64v8/image.tar
 
       - name: Create multi-arch manifest
         run: |
