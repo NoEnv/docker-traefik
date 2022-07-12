@@ -66,8 +66,8 @@ jobs:
 
       - name: Import images
         run: |
-          podman --storage-driver vfs load -i ./image-amd64/image.tar
-          podman --storage-driver vfs load -i ./image-arm64v8/image.tar
+          podman --storage-driver overlay load -i ./image-amd64/image.tar
+          podman --storage-driver overlay load -i ./image-arm64v8/image.tar
 
       - name: Create multi-arch manifest
         run: |
